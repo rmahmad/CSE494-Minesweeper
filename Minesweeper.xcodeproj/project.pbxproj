@@ -21,6 +21,8 @@
 		797E186F18DBCA2C005FC350 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797E185118DBCA2B005FC350 /* UIKit.framework */; };
 		797E187718DBCA2C005FC350 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 797E187518DBCA2C005FC350 /* InfoPlist.strings */; };
 		797E187918DBCA2C005FC350 /* MinesweeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E187818DBCA2C005FC350 /* MinesweeperTests.m */; };
+		797E188418DBCFA5005FC350 /* mines_GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E188318DBCFA5005FC350 /* mines_GameViewController.m */; };
+		797E188718DBCFBA005FC350 /* mines_HighScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E188618DBCFBA005FC350 /* mines_HighScoresViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		797E187418DBCA2C005FC350 /* MinesweeperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MinesweeperTests-Info.plist"; sourceTree = "<group>"; };
 		797E187618DBCA2C005FC350 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		797E187818DBCA2C005FC350 /* MinesweeperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinesweeperTests.m; sourceTree = "<group>"; };
+		797E188218DBCFA5005FC350 /* mines_GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mines_GameViewController.h; sourceTree = "<group>"; };
+		797E188318DBCFA5005FC350 /* mines_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mines_GameViewController.m; sourceTree = "<group>"; };
+		797E188518DBCFBA005FC350 /* mines_HighScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mines_HighScoresViewController.h; sourceTree = "<group>"; };
+		797E188618DBCFBA005FC350 /* mines_HighScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mines_HighScoresViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,10 @@
 				797E185C18DBCA2B005FC350 /* mines_AppDelegate.h */,
 				797E185D18DBCA2B005FC350 /* mines_AppDelegate.m */,
 				797E185F18DBCA2B005FC350 /* Main.storyboard */,
+				797E188218DBCFA5005FC350 /* mines_GameViewController.h */,
+				797E188318DBCFA5005FC350 /* mines_GameViewController.m */,
+				797E188518DBCFBA005FC350 /* mines_HighScoresViewController.h */,
+				797E188618DBCFBA005FC350 /* mines_HighScoresViewController.m */,
 				797E186218DBCA2B005FC350 /* mines_ViewController.h */,
 				797E186318DBCA2B005FC350 /* mines_ViewController.m */,
 				797E186518DBCA2B005FC350 /* Images.xcassets */,
@@ -251,6 +261,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				797E185A18DBCA2B005FC350 /* main.m in Sources */,
+				797E188418DBCFA5005FC350 /* mines_GameViewController.m in Sources */,
+				797E188718DBCFBA005FC350 /* mines_HighScoresViewController.m in Sources */,
 				797E186418DBCA2B005FC350 /* mines_ViewController.m in Sources */,
 				797E185E18DBCA2B005FC350 /* mines_AppDelegate.m in Sources */,
 			);
