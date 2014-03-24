@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface mines_ViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIButton *playGameButton;
+@property (strong, nonatomic) IBOutlet UIButton *highScoresButton;
 
 @end
