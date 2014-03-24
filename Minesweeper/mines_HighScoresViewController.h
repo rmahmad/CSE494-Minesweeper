@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface mines_HighScoresViewController : UIViewController
+@interface mines_HighScoresViewController : UITableViewController
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
