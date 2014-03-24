@@ -19,4 +19,5 @@
 - (void) timerCallback:(NSTimer *)timer;
 - (NSString*) getTimerValue;
 - (void) startTimer;
+- (IBAction)newGame:(id)sender;
 @end

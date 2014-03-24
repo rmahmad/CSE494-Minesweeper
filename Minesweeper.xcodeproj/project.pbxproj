@@ -23,6 +23,7 @@
 		797E187918DBCA2C005FC350 /* MinesweeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E187818DBCA2C005FC350 /* MinesweeperTests.m */; };
 		797E188418DBCFA5005FC350 /* mines_GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E188318DBCFA5005FC350 /* mines_GameViewController.m */; };
 		797E188718DBCFBA005FC350 /* mines_HighScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E188618DBCFBA005FC350 /* mines_HighScoresViewController.m */; };
+		E48BC1DD18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48BC1DC18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		797E188318DBCFA5005FC350 /* mines_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mines_GameViewController.m; sourceTree = "<group>"; };
 		797E188518DBCFBA005FC350 /* mines_HighScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mines_HighScoresViewController.h; sourceTree = "<group>"; };
 		797E188618DBCFBA005FC350 /* mines_HighScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mines_HighScoresViewController.m; sourceTree = "<group>"; };
+		E48BC1DC18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = VTN_Mine_Sweeper.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		797E185418DBCA2B005FC350 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E48BC1DC18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg */,
 				797E185518DBCA2B005FC350 /* Minesweeper-Info.plist */,
 				797E185618DBCA2B005FC350 /* InfoPlist.strings */,
 				797E185918DBCA2B005FC350 /* main.m */,
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				797E186618DBCA2B005FC350 /* Images.xcassets in Resources */,
+				E48BC1DD18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg in Resources */,
 				797E185818DBCA2B005FC350 /* InfoPlist.strings in Resources */,
 				797E186118DBCA2B005FC350 /* Main.storyboard in Resources */,
 			);

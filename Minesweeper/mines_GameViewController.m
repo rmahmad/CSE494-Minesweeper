@@ -29,6 +29,9 @@
 	
     UITapGestureRecognizer *tapScroll = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped)];
     [self.collectionView addGestureRecognizer:tapScroll];
+    
+    [self.timer invalidate];
+    [self.timeLabel setText:[NSString stringWithFormat:@"Current Time: %d:%02d", 0, 00]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,24 +40,27 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) startTimer {
-    [self.timer invalidate];
+- (void)startTimer {
     self.timerStart = [NSDate date];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerCallback:) userInfo:nil repeats:YES];
 }
 
-- (void) timerCallback:(NSTimer *)timer {
+- (IBAction)newGame:(id)sender {
+    [self viewDidLoad];
+}
+
+- (void)timerCallback:(NSTimer *)timer {
     [self.timeLabel setText:[NSString stringWithFormat:@"Current Time: %@",[self getTimerValue]]];
 }
 
-- (NSString*) getTimerValue {
+- (NSString*)getTimerValue {
     double totalSeconds = [[NSDate date] timeIntervalSinceDate:self.timerStart];
     int minutes = totalSeconds / 60;
     int seconds = (int)totalSeconds % (int) 60;
     return [NSString stringWithFormat:@"%d:%02d",minutes,seconds];
 }
 
-- (void) tapped {
+- (void)tapped {
     [self startTimer];
 }
 
