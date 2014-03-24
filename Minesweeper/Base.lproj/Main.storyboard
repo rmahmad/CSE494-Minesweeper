@@ -52,6 +52,7 @@
                     <navigationItem key="navigationItem" id="mnL-h3-wIZ"/>
                     <connections>
                         <outlet property="highScoresButton" destination="X6Z-y1-j5c" id="LMW-iS-ELP"/>
+                        <outlet property="mineImage" destination="9Yv-Ox-aMK" id="2mZ-l5-nSx"/>
                         <outlet property="playGameButton" destination="Rmp-ak-Ti2" id="3u2-md-1FX"/>
                     </connections>
                 </viewController>
