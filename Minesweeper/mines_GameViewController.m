@@ -27,7 +27,8 @@
 {
     [super viewDidLoad];
 	
-    [self startTimer];
+    UITapGestureRecognizer *tapScroll = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped)];
+    [self.collectionView addGestureRecognizer:tapScroll];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,6 +52,10 @@
     int minutes = totalSeconds / 60;
     int seconds = (int)totalSeconds % (int) 60;
     return [NSString stringWithFormat:@"%d:%02d",minutes,seconds];
+}
+
+- (void) tapped {
+    [self startTimer];
 }
 
 @end

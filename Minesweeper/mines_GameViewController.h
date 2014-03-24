@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *flagLabel;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSDate *timerStart;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 - (void) timerCallback:(NSTimer *)timer;
 - (NSString*) getTimerValue;
