@@ -26,18 +26,55 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    UITapGestureRecognizer *tapScroll = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped)];
-    [self.collectionView addGestureRecognizer:tapScroll];
+    
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
+    
+    self.cells = [[NSMutableArray alloc] init];
+    //[self setupBoard];
+    
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
     
     [self.timer invalidate];
     [self.timeLabel setText:[NSString stringWithFormat:@"Current Time: %d:%02d", 0, 00]];
+    
+    self.logList = [[NSMutableArray alloc] init];
+    [self loadChecklistItems];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
+{
+    return 11;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(1, 1, 4, 0);
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 8;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"Cell";
+    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    [self.cells addObject:indexPath];
+    cell.tag = [self.cells count] - 1;
+    //[[self.cells objectAtIndex:indexPath] addObject:cell]; // Added this to store each cell that is made in cells array
+    UITapGestureRecognizer *tapScroll = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
+    [cell addGestureRecognizer:tapScroll];
+    
+    cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+    
+    return cell;
 }
 
 - (void)startTimer {
@@ -47,6 +84,8 @@
 
 - (IBAction)newGame:(id)sender {
     [self viewDidLoad];
+    [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:[self getTimerValue], @"helleo mat!", nil]];
+    [self saveChecklistItems];
 }
 
 - (void)timerCallback:(NSTimer *)timer {
@@ -60,8 +99,75 @@
     return [NSString stringWithFormat:@"%d:%02d",minutes,seconds];
 }
 
-- (void)tapped {
+- (void)tapped:(UIGestureRecognizer *)tap {
+    NSIndexPath *temp = [self.cells objectAtIndex:tap.view.tag];
+    NSUInteger indexes[2];
+    [temp getIndexes:indexes];
+    for(int i = 0; i < 2; i++) {
+        NSLog(@"%lu",indexes[i]);
+    }
     [self startTimer];
+}
+
+- (NSString *)documentsDirectory
+{
+    return [@"~/Documents" stringByExpandingTildeInPath];
+}
+
+- (NSString *)dataFilePath
+{
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"HighScores.plist"];
+}
+
+- (void)saveChecklistItems
+{
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    
+    [archiver encodeObject:self.logList forKey:@"HighScores"];
+    
+    //archiver won't do an encode until we tell it "finishEncoding"
+    [archiver finishEncoding];
+    [data writeToFile:[self dataFilePath] atomically:YES];
+}
+
+- (void)loadChecklistItems
+{
+    // get our data file path
+    NSString *path = [self dataFilePath];
+    
+    //do we have anything in our documents directory?  If we have anything then load it up
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        // make an unarchiver, and point it to our data
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        // We would like to unarchive the "ChecklistItems" key and get a reference to it
+        self.logList = [unarchiver decodeObjectForKey:@"HighScores"];
+        // we've finished choosing keys that we want, unpack them!
+        [unarchiver finishDecoding];
+    }
+}
+
+- (void)setupBoard
+{
+    int count = 0;
+    int rand = 0;
+    
+    while (count < 10) {
+        rand = arc4random_uniform(88);
+        if (![[self.cells objectAtIndex:rand] isEqual: @"bomb"]) {
+            [[self.cells objectAtIndex:rand] addObject:@"bomb"];
+            count++;
+        }
+    }
+    
+    for (int i = 0; i < 88; i++) {
+        if (![[self.cells objectAtIndex:i] isEqual: @"bomb"]) {
+            [[self.cells objectAtIndex:i] addObject:@"safe"];
+        }
+        NSLog([self.cells objectAtIndex:i]);
+    }
+    
 }
 
 @end

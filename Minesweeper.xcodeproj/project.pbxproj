@@ -23,6 +23,16 @@
 		797E187918DBCA2C005FC350 /* MinesweeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E187818DBCA2C005FC350 /* MinesweeperTests.m */; };
 		797E188418DBCFA5005FC350 /* mines_GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E188318DBCFA5005FC350 /* mines_GameViewController.m */; };
 		797E188718DBCFBA005FC350 /* mines_HighScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E188618DBCFBA005FC350 /* mines_HighScoresViewController.m */; };
+		E45A954918E11CD700E8A2B7 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A953F18E11CD700E8A2B7 /* 1.jpg */; };
+		E45A954A18E11CD700E8A2B7 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954018E11CD700E8A2B7 /* 2.jpg */; };
+		E45A954B18E11CD700E8A2B7 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954118E11CD700E8A2B7 /* 3.jpg */; };
+		E45A954C18E11CD700E8A2B7 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954218E11CD700E8A2B7 /* 4.jpg */; };
+		E45A954D18E11CD700E8A2B7 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954318E11CD700E8A2B7 /* 5.jpg */; };
+		E45A954E18E11CD700E8A2B7 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954418E11CD700E8A2B7 /* 6.jpg */; };
+		E45A954F18E11CD700E8A2B7 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954518E11CD700E8A2B7 /* 7.jpg */; };
+		E45A955018E11CD700E8A2B7 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954618E11CD700E8A2B7 /* 8.jpg */; };
+		E45A955118E11CD700E8A2B7 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954718E11CD700E8A2B7 /* 9.jpg */; };
+		E45A955218E11CD700E8A2B7 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954818E11CD700E8A2B7 /* 10.jpg */; };
 		E48BC1DD18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48BC1DC18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +70,16 @@
 		797E188318DBCFA5005FC350 /* mines_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mines_GameViewController.m; sourceTree = "<group>"; };
 		797E188518DBCFBA005FC350 /* mines_HighScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mines_HighScoresViewController.h; sourceTree = "<group>"; };
 		797E188618DBCFBA005FC350 /* mines_HighScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mines_HighScoresViewController.m; sourceTree = "<group>"; };
+		E45A953F18E11CD700E8A2B7 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		E45A954018E11CD700E8A2B7 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		E45A954118E11CD700E8A2B7 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		E45A954218E11CD700E8A2B7 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		E45A954318E11CD700E8A2B7 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
+		E45A954418E11CD700E8A2B7 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
+		E45A954518E11CD700E8A2B7 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
+		E45A954618E11CD700E8A2B7 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
+		E45A954718E11CD700E8A2B7 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
+		E45A954818E11CD700E8A2B7 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
 		E48BC1DC18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = VTN_Mine_Sweeper.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +158,16 @@
 		797E185418DBCA2B005FC350 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E45A953F18E11CD700E8A2B7 /* 1.jpg */,
+				E45A954018E11CD700E8A2B7 /* 2.jpg */,
+				E45A954118E11CD700E8A2B7 /* 3.jpg */,
+				E45A954218E11CD700E8A2B7 /* 4.jpg */,
+				E45A954318E11CD700E8A2B7 /* 5.jpg */,
+				E45A954418E11CD700E8A2B7 /* 6.jpg */,
+				E45A954518E11CD700E8A2B7 /* 7.jpg */,
+				E45A954618E11CD700E8A2B7 /* 8.jpg */,
+				E45A954718E11CD700E8A2B7 /* 9.jpg */,
+				E45A954818E11CD700E8A2B7 /* 10.jpg */,
 				E48BC1DC18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg */,
 				797E185518DBCA2B005FC350 /* Minesweeper-Info.plist */,
 				797E185618DBCA2B005FC350 /* InfoPlist.strings */,
@@ -242,10 +272,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E45A955118E11CD700E8A2B7 /* 9.jpg in Resources */,
+				E45A955018E11CD700E8A2B7 /* 8.jpg in Resources */,
+				E45A954F18E11CD700E8A2B7 /* 7.jpg in Resources */,
+				E45A954C18E11CD700E8A2B7 /* 4.jpg in Resources */,
+				E45A954A18E11CD700E8A2B7 /* 2.jpg in Resources */,
 				797E186618DBCA2B005FC350 /* Images.xcassets in Resources */,
+				E45A954D18E11CD700E8A2B7 /* 5.jpg in Resources */,
+				E45A954E18E11CD700E8A2B7 /* 6.jpg in Resources */,
+				E45A955218E11CD700E8A2B7 /* 10.jpg in Resources */,
 				E48BC1DD18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg in Resources */,
 				797E185818DBCA2B005FC350 /* InfoPlist.strings in Resources */,
 				797E186118DBCA2B005FC350 /* Main.storyboard in Resources */,
+				E45A954B18E11CD700E8A2B7 /* 3.jpg in Resources */,
+				E45A954918E11CD700E8A2B7 /* 1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
