@@ -29,7 +29,7 @@
     
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
     
-    //[self setupBoard];
+    [self setupBoard];
     
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
@@ -178,20 +178,23 @@
 {
     int count = 0;
     int rand = 0;
+    self.mines = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < 88; i++) {
+        [self.mines addObject:@"safe"];
+    }
     
     while (count < 10) {
         rand = arc4random_uniform(88);
-        if (![[self.cells objectAtIndex:rand] isEqual: @"bomb"]) {
-            [[self.cells objectAtIndex:rand] addObject:@"bomb"];
+        if ([[self.mines objectAtIndex:rand] isEqual:@"bomb"]) {
+        } else {
+            [self.mines replaceObjectAtIndex:rand withObject:@"bomb"];
             count++;
         }
     }
     
     for (int i = 0; i < 88; i++) {
-        if (![[self.cells objectAtIndex:i] isEqual: @"bomb"]) {
-            [[self.cells objectAtIndex:i] addObject:@"safe"];
-        }
-        NSLog(@"%@",[self.cells objectAtIndex:i]);
+        NSLog(@"%@, %d",[self.mines objectAtIndex:i], i);
     }
     
 }
