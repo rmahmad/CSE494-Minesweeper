@@ -18,6 +18,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [self.mineImage addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"VTN_Mine_Sweeper.jpg"]]];
 }
 
 - (void)didReceiveMemoryWarning

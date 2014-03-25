@@ -10,6 +10,9 @@
 
 @interface mines_HighScoresViewController ()
 
+@property (strong, nonatomic) NSArray *logList;
+@property (strong, nonatomic) NSArray *sortedList;
+
 @end
 
 @implementation mines_HighScoresViewController
@@ -27,12 +30,106 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.logList = [[NSMutableArray alloc] init];
+    [self loadChecklistItems];
+    [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:@"I KNow", @"sit", nil]];
+    [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:@"Uganda", @"dogs", nil]];
+    //[(NSMutableArray *)self.logList addObject:@"rizwan"];
+    //[(NSMutableArray *)self.logList addObject:@"bro"];
+    //[self saveChecklistItems];
+    NSSortDescriptor *sortDescriptor =
+    [[NSSortDescriptor alloc] initWithKey:nil ascending:YES];
+   // NSArray *sortDescriptors =
+    //[NSArray arrayWithObject:sortDescriptor];
+    // array contained all instances sorted by "name" field
+    //self.logList = [self.logList sortedArrayUsingDescriptors:@[sortDescriptor]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSString *)documentsDirectory
+{
+    return [@"~/Documents" stringByExpandingTildeInPath];
+}
+- (NSString *)dataFilePath
+{
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"LoginModel.plist"];
+}
+
+- (void)loadChecklistItems
+{
+    // get our data file path
+    NSString *path = [self dataFilePath];
+    
+    //do we have anything in our documents directory?  If we have anything then load it up
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        // make an unarchiver, and point it to our data
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        // We would like to unarchive the "ChecklistItems" key and get a reference to it
+        self.logList = [unarchiver decodeObjectForKey:@"HighScores"];
+        // we've finished choosing keys that we want, unpack them!
+        [unarchiver finishDecoding];
+    }
+}
+
+- (void)saveChecklistItems
+{
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    
+    [archiver encodeObject:self.logList forKey:@"HighScores"];
+    
+    //archiver won't do an encode until we tell it "finishEncoding"
+    [archiver finishEncoding];
+    [data writeToFile:[self dataFilePath] atomically:YES];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.logList.count;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell;
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"BasicCell"];
+    }
+    
+    // Set the data for this cell to be from the logList
+    cell.textLabel.text = [[self.logList objectAtIndex:indexPath.row] objectAtIndex:0];
+    cell.detailTextLabel.text = [[self.logList objectAtIndex:indexPath.row] objectAtIndex:1];
+    //cell.imageView.image = [UIImage imageNamed:[[self.logList objectAtIndex:indexPath.row] objectAtIndex:1]];
+    
+    return cell;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    // Set keys for what to decode
+    if ((self = [super init])){
+        self.logList = [aDecoder decodeObjectForKey:@"logList"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    // Set keys for what to encode
+    [aCoder encodeObject:self.logList forKey:@"logList"];
 }
 
 @end
