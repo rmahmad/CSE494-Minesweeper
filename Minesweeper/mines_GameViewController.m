@@ -35,6 +35,7 @@
     _collectionView.dataSource = self;
     
     [self.timer invalidate];
+    self.timer = nil;
     [self.timeLabel setText:[NSString stringWithFormat:@"Current Time: %d:%02d", 0, 00]];
     
     self.logList = [[NSMutableArray alloc] init];
@@ -70,7 +71,7 @@
     [self.cells addObject:indexPath];
     cell.tag = [self.cells count] - 1;
     //[[self.cells objectAtIndex:indexPath] addObject:cell]; // Added this to store each cell that is made in cells array
-    UITapGestureRecognizer *tapScroll = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
+    UITapGestureRecognizer *tapScroll = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(boardTapped:)];
     [cell addGestureRecognizer:tapScroll];
     
     cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
@@ -100,13 +101,18 @@
     return [NSString stringWithFormat:@"%d:%02d",minutes,seconds];
 }
 
-- (void)tapped:(UIGestureRecognizer *)tap {
+- (void)boardTapped:(UIGestureRecognizer *)tap {
     NSIndexPath *temp = [self.cells objectAtIndex:tap.view.tag];
     NSUInteger indexes[2];
     [temp getIndexes:indexes];
     for(int i = 0; i < 2; i++) {
         NSLog(@"%lu",indexes[i]);
     }
+    if(self.timer == nil)
+        [self startTimer];
+}
+
+- (void)tapped {
     [self startTimer];
 }
 
