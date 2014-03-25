@@ -71,8 +71,11 @@
     [self.cells addObject:indexPath];
     cell.tag = [self.cells count] - 1;
     //[[self.cells objectAtIndex:indexPath] addObject:cell]; // Added this to store each cell that is made in cells array
-    UITapGestureRecognizer *tapScroll = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(boardTapped:)];
-    [cell addGestureRecognizer:tapScroll];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(boardTapped:)];
+    [cell addGestureRecognizer:tap];
+    
+    UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(boardHeld:)];
+    [cell addGestureRecognizer:hold];
     
     cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     
@@ -102,6 +105,7 @@
 }
 
 - (void)boardTapped:(UIGestureRecognizer *)tap {
+    NSLog(@"Tapped");
     NSIndexPath *temp = [self.cells objectAtIndex:tap.view.tag];
     NSUInteger indexes[2];
     [temp getIndexes:indexes];
@@ -110,6 +114,20 @@
     }
     if(self.timer == nil)
         [self startTimer];
+}
+
+- (void)boardHeld:(UIGestureRecognizer *)hold {
+    if(hold.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Held");
+        NSIndexPath *temp = [self.cells objectAtIndex:hold.view.tag];
+        NSUInteger indexes[2];
+        [temp getIndexes:indexes];
+        for(int i = 0; i < 2; i++) {
+            NSLog(@"%lu",indexes[i]);
+        }
+        if(self.timer == nil)
+            [self startTimer];
+    }
 }
 
 - (void)tapped {
