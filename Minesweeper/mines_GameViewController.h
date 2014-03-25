@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface mines_GameViewController : UIViewController
+@interface mines_GameViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *startGameButton;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *flagLabel;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSDate *timerStart;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) NSMutableArray *cells;
 
 - (void) timerCallback:(NSTimer *)timer;
 - (NSString*) getTimerValue;
