@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray *cells;
 @property (strong, nonatomic) NSArray *logList;
-@property (strong, nonatomic) NSArray *mines;
+@property (strong, nonatomic) NSMutableArray *mines;
 
 - (void) timerCallback:(NSTimer *)timer;
 - (NSString*) getTimerValue;
