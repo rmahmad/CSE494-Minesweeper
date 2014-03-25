@@ -29,7 +29,6 @@
     
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
     
-    self.cells = [[NSMutableArray alloc] init];
     //[self setupBoard];
     
     _collectionView.delegate = self;
@@ -66,6 +65,8 @@
     static NSString *identifier = @"Cell";
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    if(!self.cells)
+        self.cells = [[NSMutableArray alloc] init];
     [self.cells addObject:indexPath];
     cell.tag = [self.cells count] - 1;
     //[[self.cells objectAtIndex:indexPath] addObject:cell]; // Added this to store each cell that is made in cells array
@@ -165,7 +166,7 @@
         if (![[self.cells objectAtIndex:i] isEqual: @"bomb"]) {
             [[self.cells objectAtIndex:i] addObject:@"safe"];
         }
-        NSLog([self.cells objectAtIndex:i]);
+        NSLog(@"%@",[self.cells objectAtIndex:i]);
     }
     
 }
