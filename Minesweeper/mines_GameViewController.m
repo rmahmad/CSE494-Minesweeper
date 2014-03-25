@@ -63,21 +63,26 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"Cell";
+    static NSString *identifier = @"GameCell";
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];
+    NSString *imageName = [NSString stringWithFormat:@"closed.png"];
+    cellImageView.image = [UIImage imageNamed:imageName];
+    
     if(!self.cells)
         self.cells = [[NSMutableArray alloc] init];
     [self.cells addObject:indexPath];
     cell.tag = [self.cells count] - 1;
-    //[[self.cells objectAtIndex:indexPath] addObject:cell]; // Added this to store each cell that is made in cells array
+
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(boardTapped:)];
     [cell addGestureRecognizer:tap];
     
     UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(boardHeld:)];
     [cell addGestureRecognizer:hold];
     
-    cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+//    cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     
     return cell;
 }
@@ -128,10 +133,6 @@
         if(self.timer == nil)
             [self startTimer];
     }
-}
-
-- (void)tapped {
-    [self startTimer];
 }
 
 - (NSString *)documentsDirectory
