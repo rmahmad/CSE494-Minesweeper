@@ -33,6 +33,7 @@
     self.flagCount = 0;
     [self.gameEnded setText:@""];
     self.gameEnded.hidden = YES;
+    self.gameOver = NO;
     
     [self setupBoard];
     
@@ -108,6 +109,7 @@
 
 - (void)stopTimer {
     [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (IBAction)newGame:(id)sender {
@@ -136,7 +138,7 @@
     [path getIndexes:indexes];
     unsigned long location = indexes[1] + (8*indexes[0]);
     [self open:location withIndex:path];
-    if(self.timer == nil)
+    if(self.timer == nil && !self.gameOver)
         [self startTimer];
 }
 
@@ -147,7 +149,7 @@
         [path getIndexes:indexes];
         unsigned long location = indexes[1] + (8*indexes[0]);
         [self flag:location withIndex:path];
-        if(self.timer == nil)
+        if(self.timer == nil && !self.gameOver)
             [self startTimer];
     }
 }
@@ -203,6 +205,7 @@
             
             UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
             cellImageView.image = [UIImage imageNamed:image];
+            [self.currentBoard replaceObjectAtIndex:location withObject:@"open"];
             
             self.openCount++;
             if(self.openCount == 78) {
@@ -211,6 +214,7 @@
                 [self.gameEnded setText:@"Congratulations! You won!"];
                 self.gameEnded.textColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:1];
                 self.gameEnded.hidden = NO;
+                self.gameOver = YES;
                 NSLog(@"Yay you won!");
             }
         }
@@ -219,6 +223,7 @@
             [self.gameEnded setText:@"You have lost!"];
             self.gameEnded.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
             self.gameEnded.hidden = NO;
+            self.gameOver = YES;
             NSLog(@"LOL DIEEEE");
         }
     }
@@ -229,6 +234,7 @@
         return;
     
     if([self.currentBoard[location] isEqual:@"closed"] && self.flagCount < 10) {
+        NSLog(@"%@",self.currentBoard[location]);
         NSString *image = [NSString stringWithFormat:@"flagged.png"];
         
         UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];

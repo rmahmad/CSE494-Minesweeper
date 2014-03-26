@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *gameEnded;
 @property int flagCount;
 @property int openCount;
+@property bool gameOver;
 
 - (void) timerCallback:(NSTimer *)timer;
 - (NSString*) getTimerValue;
