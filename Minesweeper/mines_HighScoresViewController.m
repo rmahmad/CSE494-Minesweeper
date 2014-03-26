@@ -33,9 +33,6 @@
     
     self.logList = [[NSMutableArray alloc] init];
     [self loadChecklistItems];
-    //[(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:@"I KNow", @"sit", nil]];
-    //[(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:@"Uganda", @"dogs", nil]];
-    //[self saveChecklistItems];
 
     // Sort the array from lowest time to highest
     NSArray *sortedArray = [self.logList sortedArrayUsingComparator:^(id a, id b) {
