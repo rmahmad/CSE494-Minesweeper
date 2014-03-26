@@ -31,6 +31,9 @@
     _collectionView.dataSource = self;
     
     self.flagCount = 0;
+    self.openCount = 0;
+    [self updateFlagCount];
+    
     [self.gameEnded setText:@""];
     self.gameEnded.hidden = YES;
     self.gameOver = NO;
@@ -215,7 +218,6 @@
                 self.gameEnded.textColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:1];
                 self.gameEnded.hidden = NO;
                 self.gameOver = YES;
-                NSLog(@"Yay you won!");
             }
         }
         else {
@@ -224,7 +226,6 @@
             self.gameEnded.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
             self.gameEnded.hidden = NO;
             self.gameOver = YES;
-            NSLog(@"LOL DIEEEE");
         }
     }
 }
@@ -234,7 +235,6 @@
         return;
     
     if([self.currentBoard[location] isEqual:@"closed"] && self.flagCount < 10) {
-        NSLog(@"%@",self.currentBoard[location]);
         NSString *image = [NSString stringWithFormat:@"flagged.png"];
         
         UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
