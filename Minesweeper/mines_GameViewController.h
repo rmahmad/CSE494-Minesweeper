@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSArray *logList;
 @property (strong, nonatomic) NSMutableArray *mines;
 @property (strong, nonatomic) NSMutableArray *currentBoard;
+@property (strong, nonatomic) IBOutlet UILabel *gameEnded;
 @property int flagCount;
 @property int openCount;
 

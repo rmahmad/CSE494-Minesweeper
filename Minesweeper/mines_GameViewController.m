@@ -27,13 +27,14 @@
 {
     [super viewDidLoad];
     
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
-    self.flagCount = 0;
-    
-    [self setupBoard];
-    
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
+    
+    self.flagCount = 0;
+    [self.gameEnded setText:@""];
+    self.gameEnded.hidden = YES;
+    
+    [self setupBoard];
     
     [self.timer invalidate];
     self.timer = nil;
@@ -86,13 +87,32 @@
     return cell;
 }
 
+- (void) resetCollectionView {
+    for(int i = 0; i < 88; i++) {
+        NSUInteger indexArray[] = {i/8, i%8};
+        NSIndexPath *path = [[NSIndexPath alloc] initWithIndexes:indexArray length:2];
+        
+        NSString *image = [NSString stringWithFormat:@"closed.png"];
+        
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:path];
+        
+        UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
+        cellImageView.image = [UIImage imageNamed:image];
+    }
+}
+
 - (void)startTimer {
     self.timerStart = [NSDate date];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerCallback:) userInfo:nil repeats:YES];
 }
 
+- (void)stopTimer {
+    [self.timer invalidate];
+}
+
 - (IBAction)newGame:(id)sender {
     [self viewDidLoad];
+    [self resetCollectionView];
 }
 
 - (void)timerCallback:(NSTimer *)timer {
@@ -172,6 +192,9 @@
 }
 
 - (void)open:(unsigned long) location withIndex:(NSIndexPath *)indexPath {
+    if(!self.gameEnded.hidden)
+        return;
+    
     if(![self.currentBoard[location] isEqual:@"open"] && ![self.currentBoard[location] isEqual:@"flagged"]) {
         if(![self.mines[location] isEqual:@"bomb"]) {
             NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:location]];
@@ -182,17 +205,29 @@
             cellImageView.image = [UIImage imageNamed:image];
             
             self.openCount++;
-            if(self.openCount == 78)
+            if(self.openCount == 78) {
+                [self stopTimer];
                 [self gameWon];
-            NSLog(@"Yay you won!");
+                [self.gameEnded setText:@"Congratulations! You won!"];
+                self.gameEnded.textColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:1];
+                self.gameEnded.hidden = NO;
+                NSLog(@"Yay you won!");
+            }
         }
         else {
+            [self stopTimer];
+            [self.gameEnded setText:@"You have lost!"];
+            self.gameEnded.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
+            self.gameEnded.hidden = NO;
             NSLog(@"LOL DIEEEE");
         }
     }
 }
 
 - (void)flag:(unsigned long) location withIndex:(NSIndexPath *)indexPath {
+    if(!self.gameEnded.hidden)
+        return;
+    
     if([self.currentBoard[location] isEqual:@"closed"] && self.flagCount < 10) {
         NSString *image = [NSString stringWithFormat:@"flagged.png"];
         
