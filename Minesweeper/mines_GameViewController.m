@@ -177,6 +177,7 @@
 {
     int count = 0;
     int rand = 0;
+    int mineClose = 0;
     self.mines = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 88; i++) {
@@ -192,10 +193,190 @@
         }
     }
     
+    for (int i = 0; i < 6; i++) {
+        for (int j = 9; j < 79; j += 8) {
+            mineClose = 0;
+            if ([[self.mines objectAtIndex:(j+i)+7] isEqual:@"bomb"]) {
+                mineClose++;
+            }
+            if ([[self.mines objectAtIndex:(j+i)+8] isEqual:@"bomb"]) {
+                mineClose++;
+            }
+            if ([[self.mines objectAtIndex:(j+i)+9] isEqual:@"bomb"]) {
+                mineClose++;
+            }
+            if ([[self.mines objectAtIndex:(j+i)-7] isEqual:@"bomb"]) {
+                mineClose++;
+            }
+            if ([[self.mines objectAtIndex:(j+i)-8] isEqual:@"bomb"]) {
+                mineClose++;
+            }
+            if ([[self.mines objectAtIndex:(j+i)-9] isEqual:@"bomb"]) {
+                mineClose++;
+            }
+            if ([[self.mines objectAtIndex:(j+i)-1] isEqual:@"bomb"]) {
+                mineClose++;
+            }
+            if ([[self.mines objectAtIndex:(j+i)+1] isEqual:@"bomb"]) {
+                mineClose++;
+            }
+            if (mineClose != 0 && ![[self.mines objectAtIndex:j+i] isEqual:@"bomb"]) {
+                [self.mines replaceObjectAtIndex:j+i withObject:[NSString stringWithFormat:@"%d", mineClose]];
+            }
+        }
+    }
+    
+    for (int i = 1; i < 7; i++) {
+        mineClose = 0;
+        if ([[self.mines objectAtIndex:(i-1)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i+1)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i+7)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i+8)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i+9)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+            [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
+        }
+    }
+    
+    for (int i = 81; i < 87; i++) {
+        mineClose = 0;
+        if ([[self.mines objectAtIndex:(i-1)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i+1)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i-7)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i-8)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i-9)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+            [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
+        }
+    }
+    
+    for (int i = 8; i < 80; i += 8) {
+        mineClose = 0;
+        if ([[self.mines objectAtIndex:(i-8)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i+1)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i-7)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i+8)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i+9)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+            [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
+        }
+    }
+    
+    for (int i = 15; i < 87; i += 8) {
+        mineClose = 0;
+        if ([[self.mines objectAtIndex:(i-1)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i-9)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i-8)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i+7)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if ([[self.mines objectAtIndex:(i+8)] isEqual:@"bomb"]) {
+            mineClose++;
+        }
+        if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+            [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
+        }
+    }
+    
+    int i = 0;
+    mineClose = 0;
+    if ([[self.mines objectAtIndex:(i+1)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if ([[self.mines objectAtIndex:(i+8)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if ([[self.mines objectAtIndex:(i+9)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+        [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
+    }
+    
+    i = 7;
+    mineClose = 0;
+    if ([[self.mines objectAtIndex:(i-1)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if ([[self.mines objectAtIndex:(i+7)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if ([[self.mines objectAtIndex:(i+8)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+        [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
+    }
+    
+    i = 80;
+    mineClose = 0;
+    if ([[self.mines objectAtIndex:(i+1)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if ([[self.mines objectAtIndex:(i-8)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if ([[self.mines objectAtIndex:(i-7)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+        [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
+    }
+    
+    i = 87;
+    mineClose = 0;
+    if ([[self.mines objectAtIndex:(i-1)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if ([[self.mines objectAtIndex:(i-8)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if ([[self.mines objectAtIndex:(i-9)] isEqual:@"bomb"]) {
+        mineClose++;
+    }
+    if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+        [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
+    }
+
     for (int i = 0; i < 88; i++) {
         NSLog(@"%@, %d",[self.mines objectAtIndex:i], i);
     }
-    
 }
 
 @end
