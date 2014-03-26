@@ -2,7 +2,7 @@
 //  mines_GameViewController.m
 //  Minesweeper
 //
-//  Created by Rizwan Ahmad on 3/20/14.
+//  Created by Rizwan Ahmad and Stephen Pluta on 3/20/14.
 //  Copyright (c) 2014 Bay Trailers. All rights reserved.
 //
 
@@ -202,8 +202,10 @@
     
     if(![self.currentBoard[location] isEqual:@"open"] && ![self.currentBoard[location] isEqual:@"flagged"]) {
         if(![self.mines[location] isEqual:@"bomb"]) {
-            if([self.mines[location] isEqual:@"0"])
+            if([self.mines[location] isEqual:@"0"]) {
                 [self uncoverWhitespace:location];
+                self.openCount--;
+            }
             
             NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:location]];
              
@@ -214,7 +216,7 @@
             [self.currentBoard replaceObjectAtIndex:location withObject:@"open"];
             
             self.openCount++;
-            if(self.openCount == 78) {
+            if(self.openCount >= 78) {
                 [self stopTimer];
                 [self gameWon];
                 [self.gameEnded setText:@"Congratulations! You won!"];
@@ -309,11 +311,24 @@
                 
                 UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
                 cellImageView.image = [UIImage imageNamed:image];
-                [self.currentBoard replaceObjectAtIndex:location withObject:@"open"];
+                [self.currentBoard replaceObjectAtIndex:surroundingLocation withObject:@"open"];
+                self.openCount++;
+                NSLog(@"location: %lu",location);
+                NSLog(@"surroundingLocation: %lu",surroundingLocation);
+                NSLog(@"openCount: %d",self.openCount);
                 if([[self.mines objectAtIndex:surroundingLocation] isEqual:@"0"])
                     [self uncoverWhitespace:surroundingLocation];
             }
         }
+    }
+    
+    if(self.openCount >= 78) {
+        [self stopTimer];
+        [self gameWon];
+        [self.gameEnded setText:@"Congratulations! You won!"];
+        self.gameEnded.textColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:1];
+        self.gameEnded.hidden = NO;
+        self.gameOver = YES;
     }
 }
 
