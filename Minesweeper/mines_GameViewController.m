@@ -202,8 +202,11 @@
     
     if(![self.currentBoard[location] isEqual:@"open"] && ![self.currentBoard[location] isEqual:@"flagged"]) {
         if(![self.mines[location] isEqual:@"bomb"]) {
-            NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:location]];
+            if([self.mines[location] isEqual:@"0"])
+                [self uncoverWhitespace:location];
             
+            NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:location]];
+             
             UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
             
             UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
@@ -274,6 +277,27 @@
             
             UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
             cellImageView.image = [UIImage imageNamed:image];
+        }
+    }
+}
+
+- (void) uncoverWhitespace:(unsigned long) location {
+    for(int i = -1; i < 2; i++) {
+        for(int j = -1; j < 2; j++) {
+            unsigned long surroundingLocation = location + (i*8) + j;
+            if([self.currentBoard[surroundingLocation] isEqual:@"closed"]) {
+                NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:surroundingLocation]];
+                NSUInteger indexArray[] = {surroundingLocation/8, surroundingLocation%8};
+                NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndexes:indexArray length:2];
+                
+                UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+                
+                UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
+                cellImageView.image = [UIImage imageNamed:image];
+                [self.currentBoard replaceObjectAtIndex:location withObject:@"open"];
+                if([[self.mines objectAtIndex:surroundingLocation] isEqual:@"0"])
+                    [self uncoverWhitespace:surroundingLocation];
+            }
         }
     }
 }
