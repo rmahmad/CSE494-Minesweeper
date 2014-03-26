@@ -25,4 +25,5 @@
 - (void) startTimer;
 - (IBAction)newGame:(id)sender;
 - (void)setupBoard;
+- (void)gameWon;
 @end

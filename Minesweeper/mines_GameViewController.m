@@ -94,8 +94,6 @@
 
 - (IBAction)newGame:(id)sender {
     [self viewDidLoad];
-    [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:[self getTimerValue], @"helleo mat!", nil]];
-    [self saveChecklistItems];
 }
 
 - (void)timerCallback:(NSTimer *)timer {
@@ -221,7 +219,7 @@
             if ([[self.mines objectAtIndex:(j+i)+1] isEqual:@"bomb"]) {
                 mineClose++;
             }
-            if (mineClose != 0 && ![[self.mines objectAtIndex:j+i] isEqual:@"bomb"]) {
+            if (![[self.mines objectAtIndex:j+i] isEqual:@"bomb"]) {
                 [self.mines replaceObjectAtIndex:j+i withObject:[NSString stringWithFormat:@"%d", mineClose]];
             }
         }
@@ -244,7 +242,7 @@
         if ([[self.mines objectAtIndex:(i+9)] isEqual:@"bomb"]) {
             mineClose++;
         }
-        if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+        if (![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
             [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
         }
     }
@@ -266,7 +264,7 @@
         if ([[self.mines objectAtIndex:(i-9)] isEqual:@"bomb"]) {
             mineClose++;
         }
-        if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+        if (![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
             [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
         }
     }
@@ -288,7 +286,7 @@
         if ([[self.mines objectAtIndex:(i+9)] isEqual:@"bomb"]) {
             mineClose++;
         }
-        if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+        if (![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
             [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
         }
     }
@@ -310,7 +308,7 @@
         if ([[self.mines objectAtIndex:(i+8)] isEqual:@"bomb"]) {
             mineClose++;
         }
-        if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+        if (![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
             [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
         }
     }
@@ -326,7 +324,7 @@
     if ([[self.mines objectAtIndex:(i+9)] isEqual:@"bomb"]) {
         mineClose++;
     }
-    if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+    if (![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
         [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
     }
     
@@ -341,7 +339,7 @@
     if ([[self.mines objectAtIndex:(i+8)] isEqual:@"bomb"]) {
         mineClose++;
     }
-    if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+    if (![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
         [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
     }
     
@@ -356,7 +354,7 @@
     if ([[self.mines objectAtIndex:(i-7)] isEqual:@"bomb"]) {
         mineClose++;
     }
-    if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+    if (![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
         [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
     }
     
@@ -371,13 +369,29 @@
     if ([[self.mines objectAtIndex:(i-9)] isEqual:@"bomb"]) {
         mineClose++;
     }
-    if (mineClose != 0 && ![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
+    if (![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
         [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
     }
 
     for (int i = 0; i < 88; i++) {
         NSLog(@"%@, %d",[self.mines objectAtIndex:i], i);
     }
+}
+
+- (void)gameWon
+{
+    [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:[self getTimerValue], [self getDate], nil]];
+    [self saveChecklistItems];
+}
+
+-(NSString *)getDate
+{
+    // Gets the current date and returns it as a string in the format of 02/19/14, 4:53 pm
+    NSDate *date = [[NSDate alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yy, hh:mma"];
+    NSString *strMyDate= [dateFormatter stringFromDate:date];
+    return strMyDate;
 }
 
 @end
