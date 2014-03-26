@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSMutableArray *cells;
 @property (strong, nonatomic) NSArray *logList;
 @property (strong, nonatomic) NSMutableArray *mines;
+@property (strong, nonatomic) NSMutableArray *currentBoard;
 
 - (void) timerCallback:(NSTimer *)timer;
 - (NSString*) getTimerValue;
