@@ -17,6 +17,7 @@
 		7974D0E918E235CB007A981A /* open_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0DF18E235CB007A981A /* open_6.png */; };
 		7974D0EA18E235CB007A981A /* open_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0E018E235CB007A981A /* open_7.png */; };
 		7974D0EB18E235CB007A981A /* open_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0E118E235CB007A981A /* open_8.png */; };
+		7974D0EE18E26B9E007A981A /* open_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0ED18E26B9E007A981A /* open_0.png */; };
 		797E184E18DBCA2B005FC350 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797E184D18DBCA2B005FC350 /* Foundation.framework */; };
 		797E185018DBCA2B005FC350 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797E184F18DBCA2B005FC350 /* CoreGraphics.framework */; };
 		797E185218DBCA2B005FC350 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797E185118DBCA2B005FC350 /* UIKit.framework */; };
@@ -67,6 +68,7 @@
 		7974D0DF18E235CB007A981A /* open_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open_6.png; path = states/open_6.png; sourceTree = "<group>"; };
 		7974D0E018E235CB007A981A /* open_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open_7.png; path = states/open_7.png; sourceTree = "<group>"; };
 		7974D0E118E235CB007A981A /* open_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open_8.png; path = states/open_8.png; sourceTree = "<group>"; };
+		7974D0ED18E26B9E007A981A /* open_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open_0.png; sourceTree = "<group>"; };
 		797E184A18DBCA2B005FC350 /* Minesweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minesweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		797E184D18DBCA2B005FC350 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		797E184F18DBCA2B005FC350 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -180,6 +182,7 @@
 			children = (
 				7974D0D818E235CB007A981A /* closed.png */,
 				7974D0D918E235CB007A981A /* flagged.png */,
+				7974D0ED18E26B9E007A981A /* open_0.png */,
 				7974D0DA18E235CB007A981A /* open_1.png */,
 				7974D0DB18E235CB007A981A /* open_2.png */,
 				7974D0DC18E235CB007A981A /* open_3.png */,
@@ -322,6 +325,7 @@
 				E48BC1DD18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg in Resources */,
 				797E185818DBCA2B005FC350 /* InfoPlist.strings in Resources */,
 				797E186118DBCA2B005FC350 /* Main.storyboard in Resources */,
+				7974D0EE18E26B9E007A981A /* open_0.png in Resources */,
 				7974D0E818E235CB007A981A /* open_5.png in Resources */,
 				E45A954B18E11CD700E8A2B7 /* 3.jpg in Resources */,
 				7974D0E418E235CB007A981A /* open_1.png in Resources */,

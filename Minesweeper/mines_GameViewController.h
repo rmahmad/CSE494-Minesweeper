@@ -25,4 +25,6 @@
 - (void) startTimer;
 - (IBAction)newGame:(id)sender;
 - (void)setupBoard;
+- (void)open:(unsigned long) location withIndex:(NSIndexPath *)indexPath;
+//- (UICollectionViewCell *)remakeCell:(NSIndexPath *)indexPath withImage:(NSString *)image;
 @end

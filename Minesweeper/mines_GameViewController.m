@@ -82,8 +82,6 @@
     UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(boardHeld:)];
     [cell addGestureRecognizer:hold];
     
-//    cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
-    
     return cell;
 }
 
@@ -111,12 +109,11 @@
 
 - (void)boardTapped:(UIGestureRecognizer *)tap {
     NSLog(@"Tapped");
-    NSIndexPath *temp = [self.cells objectAtIndex:tap.view.tag];
+    NSIndexPath *path = [self.cells objectAtIndex:tap.view.tag];
     NSUInteger indexes[2];
-    [temp getIndexes:indexes];
-    for(int i = 0; i < 2; i++) {
-        NSLog(@"%lu",indexes[i]);
-    }
+    [path getIndexes:indexes];
+    unsigned long location = indexes[1] + (8*indexes[0]);
+    [self open:location withIndex:path];
     if(self.timer == nil)
         [self startTimer];
 }
@@ -174,15 +171,33 @@
     }
 }
 
+- (void)open:(unsigned long) location withIndex:(NSIndexPath *)indexPath {
+    if(![self.currentBoard[location] isEqual:@"open"] && ![self.currentBoard[location] isEqual:@"flagged"]) {
+        NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:location]];
+        NSLog(@"%@",image);
+        
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+        
+        UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
+        cellImageView.image = [UIImage imageNamed:image];
+    }
+}
+
+- (void)flag:(unsigned long) location {
+    
+}
+
 - (void)setupBoard
 {
     int count = 0;
     int rand = 0;
     int mineClose = 0;
     self.mines = [[NSMutableArray alloc] init];
+    self.currentBoard = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 88; i++) {
         [self.mines addObject:@"safe"];
+        [self.currentBoard addObject:@"closed"];
     }
     
     while (count < 10) {
