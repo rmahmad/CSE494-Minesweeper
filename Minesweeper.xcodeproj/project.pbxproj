@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7968CCA118E2BD27007176C1 /* open_bomb.png in Resources */ = {isa = PBXBuildFile; fileRef = 7968CCA018E2BD27007176C1 /* open_bomb.png */; };
-		7974D0E218E235CB007A981A /* closed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0D818E235CB007A981A /* closed.png */; };
-		7974D0E318E235CB007A981A /* flagged.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0D918E235CB007A981A /* flagged.png */; };
 		7974D0E418E235CB007A981A /* open_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0DA18E235CB007A981A /* open_1.png */; };
 		7974D0E518E235CB007A981A /* open_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0DB18E235CB007A981A /* open_2.png */; };
 		7974D0E618E235CB007A981A /* open_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0DC18E235CB007A981A /* open_3.png */; };
@@ -19,6 +17,8 @@
 		7974D0EA18E235CB007A981A /* open_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0E018E235CB007A981A /* open_7.png */; };
 		7974D0EB18E235CB007A981A /* open_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0E118E235CB007A981A /* open_8.png */; };
 		7974D0EE18E26B9E007A981A /* open_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974D0ED18E26B9E007A981A /* open_0.png */; };
+		797B623A18E35D1700EFC777 /* closed.png in Resources */ = {isa = PBXBuildFile; fileRef = 797B623918E35D1700EFC777 /* closed.png */; };
+		797B623D18E35D7700EFC777 /* flagged.png in Resources */ = {isa = PBXBuildFile; fileRef = 797B623C18E35D7700EFC777 /* flagged.png */; };
 		797E184E18DBCA2B005FC350 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797E184D18DBCA2B005FC350 /* Foundation.framework */; };
 		797E185018DBCA2B005FC350 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797E184F18DBCA2B005FC350 /* CoreGraphics.framework */; };
 		797E185218DBCA2B005FC350 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797E185118DBCA2B005FC350 /* UIKit.framework */; };
@@ -60,8 +60,6 @@
 
 /* Begin PBXFileReference section */
 		7968CCA018E2BD27007176C1 /* open_bomb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open_bomb.png; sourceTree = "<group>"; };
-		7974D0D818E235CB007A981A /* closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = closed.png; path = states/closed.png; sourceTree = "<group>"; };
-		7974D0D918E235CB007A981A /* flagged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flagged.png; path = states/flagged.png; sourceTree = "<group>"; };
 		7974D0DA18E235CB007A981A /* open_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open_1.png; path = states/open_1.png; sourceTree = "<group>"; };
 		7974D0DB18E235CB007A981A /* open_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open_2.png; path = states/open_2.png; sourceTree = "<group>"; };
 		7974D0DC18E235CB007A981A /* open_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open_3.png; path = states/open_3.png; sourceTree = "<group>"; };
@@ -71,6 +69,8 @@
 		7974D0E018E235CB007A981A /* open_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open_7.png; path = states/open_7.png; sourceTree = "<group>"; };
 		7974D0E118E235CB007A981A /* open_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open_8.png; path = states/open_8.png; sourceTree = "<group>"; };
 		7974D0ED18E26B9E007A981A /* open_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open_0.png; sourceTree = "<group>"; };
+		797B623918E35D1700EFC777 /* closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closed.png; sourceTree = "<group>"; };
+		797B623C18E35D7700EFC777 /* flagged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flagged.png; sourceTree = "<group>"; };
 		797E184A18DBCA2B005FC350 /* Minesweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minesweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		797E184D18DBCA2B005FC350 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		797E184F18DBCA2B005FC350 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -182,8 +182,8 @@
 		797E185418DBCA2B005FC350 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7974D0D818E235CB007A981A /* closed.png */,
-				7974D0D918E235CB007A981A /* flagged.png */,
+				797B623918E35D1700EFC777 /* closed.png */,
+				797B623C18E35D7700EFC777 /* flagged.png */,
 				7974D0ED18E26B9E007A981A /* open_0.png */,
 				7974D0DA18E235CB007A981A /* open_1.png */,
 				7974D0DB18E235CB007A981A /* open_2.png */,
@@ -311,6 +311,7 @@
 				E45A955118E11CD700E8A2B7 /* 9.jpg in Resources */,
 				E45A955018E11CD700E8A2B7 /* 8.jpg in Resources */,
 				7974D0E518E235CB007A981A /* open_2.png in Resources */,
+				797B623A18E35D1700EFC777 /* closed.png in Resources */,
 				7974D0E618E235CB007A981A /* open_3.png in Resources */,
 				E45A954F18E11CD700E8A2B7 /* 7.jpg in Resources */,
 				7974D0EA18E235CB007A981A /* open_7.png in Resources */,
@@ -320,11 +321,10 @@
 				E45A954D18E11CD700E8A2B7 /* 5.jpg in Resources */,
 				E45A954E18E11CD700E8A2B7 /* 6.jpg in Resources */,
 				7974D0E718E235CB007A981A /* open_4.png in Resources */,
-				7974D0E318E235CB007A981A /* flagged.png in Resources */,
 				7974D0E918E235CB007A981A /* open_6.png in Resources */,
+				797B623D18E35D7700EFC777 /* flagged.png in Resources */,
 				7974D0EB18E235CB007A981A /* open_8.png in Resources */,
 				7968CCA118E2BD27007176C1 /* open_bomb.png in Resources */,
-				7974D0E218E235CB007A981A /* closed.png in Resources */,
 				E45A955218E11CD700E8A2B7 /* 10.jpg in Resources */,
 				E48BC1DD18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg in Resources */,
 				797E185818DBCA2B005FC350 /* InfoPlist.strings in Resources */,

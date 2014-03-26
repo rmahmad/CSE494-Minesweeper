@@ -226,6 +226,7 @@
             self.gameEnded.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
             self.gameEnded.hidden = NO;
             self.gameOver = YES;
+            [self uncoverBombs];
         }
     }
 }
@@ -259,6 +260,21 @@
         
         self.flagCount--;
         [self updateFlagCount];
+    }
+}
+
+- (void) uncoverBombs {
+    for(int i = 0; i < 88; i++) {
+        if([self.mines[i] isEqual:@"bomb"]) {
+            NSString *image = [NSString stringWithFormat:@"open_bomb.png"];
+            NSUInteger indexArray[] = {i/8, i%8};
+            NSIndexPath *path = [[NSIndexPath alloc] initWithIndexes:indexArray length:2];
+            
+            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:path];
+            
+            UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
+            cellImageView.image = [UIImage imageNamed:image];
+        }
     }
 }
 
