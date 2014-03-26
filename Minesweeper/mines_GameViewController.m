@@ -282,8 +282,23 @@
 }
 
 - (void) uncoverWhitespace:(unsigned long) location {
-    for(int i = -1; i < 2; i++) {
-        for(int j = -1; j < 2; j++) {
+    int i_min = -1;
+    int i_max = 2;
+    int j_min = -1;
+    int j_max = 2;
+    
+    if(location%8 == 0)
+        j_min = 0;
+    else if(location%8 == 7)
+        j_max = 1;
+    
+    if(location/8 == 0)
+        i_min = 0;
+    else if(location/8 == 10)
+        i_max = 1;
+    
+    for(int i = i_min; i < i_max; i++) {
+        for(int j = j_min; j < j_max; j++) {
             unsigned long surroundingLocation = location + (i*8) + j;
             if([self.currentBoard[surroundingLocation] isEqual:@"closed"]) {
                 NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:surroundingLocation]];
