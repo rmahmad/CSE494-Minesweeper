@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSArray *logList;
 @property (strong, nonatomic) NSMutableArray *mines;
 @property (strong, nonatomic) NSMutableArray *currentBoard;
+@property int flagCount;
+@property int openCount;
 
 - (void) timerCallback:(NSTimer *)timer;
 - (NSString*) getTimerValue;

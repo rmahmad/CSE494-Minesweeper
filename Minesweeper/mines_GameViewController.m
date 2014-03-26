@@ -28,6 +28,7 @@
     [super viewDidLoad];
     
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
+    self.flagCount = 0;
     
     [self setupBoard];
     
@@ -98,6 +99,10 @@
     [self.timeLabel setText:[NSString stringWithFormat:@"Current Time: %@",[self getTimerValue]]];
 }
 
+- (void)updateFlagCount {
+    [self.flagLabel setText:[NSString stringWithFormat:@"Flags Used: %d/10",self.flagCount]];
+}
+
 - (NSString*)getTimerValue {
     double totalSeconds = [[NSDate date] timeIntervalSinceDate:self.timerStart];
     int minutes = totalSeconds / 60;
@@ -106,7 +111,6 @@
 }
 
 - (void)boardTapped:(UIGestureRecognizer *)tap {
-    NSLog(@"Tapped");
     NSIndexPath *path = [self.cells objectAtIndex:tap.view.tag];
     NSUInteger indexes[2];
     [path getIndexes:indexes];
@@ -118,13 +122,11 @@
 
 - (void)boardHeld:(UIGestureRecognizer *)hold {
     if(hold.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Held");
-        NSIndexPath *temp = [self.cells objectAtIndex:hold.view.tag];
+        NSIndexPath *path = [self.cells objectAtIndex:hold.view.tag];
         NSUInteger indexes[2];
-        [temp getIndexes:indexes];
-        for(int i = 0; i < 2; i++) {
-            NSLog(@"%lu",indexes[i]);
-        }
+        [path getIndexes:indexes];
+        unsigned long location = indexes[1] + (8*indexes[0]);
+        [self flag:location withIndex:path];
         if(self.timer == nil)
             [self startTimer];
     }
@@ -171,18 +173,52 @@
 
 - (void)open:(unsigned long) location withIndex:(NSIndexPath *)indexPath {
     if(![self.currentBoard[location] isEqual:@"open"] && ![self.currentBoard[location] isEqual:@"flagged"]) {
-        NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:location]];
-        NSLog(@"%@",image);
+        if(![self.mines[location] isEqual:@"bomb"]) {
+            NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:location]];
+            
+            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+            
+            UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
+            cellImageView.image = [UIImage imageNamed:image];
+            
+            self.openCount++;
+            if(self.openCount == 78)
+                [self gameWon];
+            NSLog(@"Yay you won!");
+        }
+        else {
+            NSLog(@"LOL DIEEEE");
+        }
+    }
+}
+
+- (void)flag:(unsigned long) location withIndex:(NSIndexPath *)indexPath {
+    if([self.currentBoard[location] isEqual:@"closed"] && self.flagCount < 10) {
+        NSString *image = [NSString stringWithFormat:@"flagged.png"];
         
         UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
         
         UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
         cellImageView.image = [UIImage imageNamed:image];
-    }
-}
 
-- (void)flag:(unsigned long) location {
-    
+        [self.currentBoard replaceObjectAtIndex:location withObject:@"flagged"];
+
+        self.flagCount++;
+        [self updateFlagCount];
+    }
+    else if([self.currentBoard[location] isEqual:@"flagged"]) {
+        NSString *image = [NSString stringWithFormat:@"closed.png"];
+        
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+        
+        UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
+        cellImageView.image = [UIImage imageNamed:image];
+        
+        [self.currentBoard replaceObjectAtIndex:location withObject:@"closed"];
+        
+        self.flagCount--;
+        [self updateFlagCount];
+    }
 }
 
 - (void)setupBoard
@@ -386,10 +422,6 @@
     }
     if (![[self.mines objectAtIndex:i] isEqual:@"bomb"]) {
         [self.mines replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"%d", mineClose]];
-    }
-
-    for (int i = 0; i < 88; i++) {
-        NSLog(@"%@, %d",[self.mines objectAtIndex:i], i);
     }
 }
 
