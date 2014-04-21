@@ -125,7 +125,7 @@
 }
 
 - (void)updateFlagCount {
-    [self.flagLabel setText:[NSString stringWithFormat:@"Flags Used: %d/10",self.flagCount]];
+    [self.flagLabel setText:[NSString stringWithFormat:@"Flags Used: %d/%d",self.flagCount, [[mines_settings sharedSettings] numberOfBombs]]];
 }
 
 - (NSString*)getTimerValue {
@@ -216,7 +216,7 @@
             [self.currentBoard replaceObjectAtIndex:location withObject:@"open"];
             
             self.openCount++;
-            if(self.openCount >= 78) {
+            if(self.openCount >= 88-[[mines_settings sharedSettings] numberOfBombs]) {
                 [self stopTimer];
                 [self gameWon];
                 [self.gameEnded setText:@"Congratulations! You won!"];
@@ -240,7 +240,7 @@
     if(!self.gameEnded.hidden)
         return;
     
-    if([self.currentBoard[location] isEqual:@"closed"] && self.flagCount < 10) {
+    if([self.currentBoard[location] isEqual:@"closed"] && self.flagCount < [[mines_settings sharedSettings] numberOfBombs]) {
         NSString *image = [NSString stringWithFormat:@"flagged.png"];
         
         UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
@@ -345,7 +345,7 @@
         [self.currentBoard addObject:@"closed"];
     }
     
-    while (count < 10) {
+    while (count < [[mines_settings sharedSettings] numberOfBombs]) {
         rand = arc4random_uniform(88);
         if ([[self.mines objectAtIndex:rand] isEqual:@"bomb"]) {
         } else {

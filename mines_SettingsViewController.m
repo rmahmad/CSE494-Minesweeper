@@ -14,6 +14,7 @@
 
 @implementation mines_SettingsViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,13 +28,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
+    /*UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
     tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    tableView.delegate = self;
-    tableView.dataSource = self;
     [tableView reloadData];
     
-    self.tableView = tableView;
+    self.tableView = tableView;*/
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -55,18 +54,28 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"BasicCell"];
     }
     
-    // Only the top 10 highest scores should be shown
-    /*if (indexPath.row < 10) {
-        // Set the data for this cell to be from the logList
-        cell.textLabel.text = [[self.logList objectAtIndex:indexPath.row] objectAtIndex:0];
-        cell.detailTextLabel.text = [[self.logList objectAtIndex:indexPath.row] objectAtIndex:1];
-        
-        // Use the index number for the image
-        NSString *imageName = [NSString stringWithFormat:@"%ld.jpg", indexPath.row + 1];
-        cell.imageView.image = [UIImage imageNamed:imageName];
-    }*/
+    NSArray *options = [NSArray arrayWithObjects:@"Easy", @"Medium", @"Hard", nil];
+    
+    cell.textLabel.text = [options objectAtIndex:indexPath.row];
+    
+    if ([indexPath compare:self.lastIndexPath] == NSOrderedSame)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.lastIndexPath = indexPath;
+    [[mines_settings sharedSettings] setDifficulty: indexPath.row];
+    
+    [tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

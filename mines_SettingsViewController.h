@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "mines_settings.h"
 
 @interface mines_SettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) NSIndexPath *lastIndexPath;
 
 @end

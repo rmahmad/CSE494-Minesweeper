@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "mines_settings.h"
 
 @interface mines_GameViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *startGameButton;
