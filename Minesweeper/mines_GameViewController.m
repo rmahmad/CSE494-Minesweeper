@@ -94,7 +94,7 @@
         self.cells = [[NSMutableArray alloc] init];
     [self.cells addObject:indexPath];
     cell.tag = [self.cells count] - 1;
-
+    
     // Add tap and hold gesture recognizers to the cell
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(boardTapped:)];
     [cell addGestureRecognizer:tap];
@@ -252,7 +252,7 @@
             // Set the image of the opening cell to the appropriate image - open_x.png, where x is the
             // number of mines around it
             NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:location]];
-             
+            
             UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
             
             UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
@@ -300,10 +300,10 @@
         
         UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
         cellImageView.image = [UIImage imageNamed:image];
-
+        
         // Set this cell to "flagged" in the currentBoard array
         [self.currentBoard replaceObjectAtIndex:location withObject:@"flagged"];
-
+        
         // Increment the flagCount and update the flagLabel
         self.flagCount++;
         [self updateFlagCount];
@@ -325,6 +325,11 @@
         self.flagCount--;
         [self updateFlagCount];
     }
+    else if([self.currentBoard[location] isEqual:@"open"]) {
+        if(![self.mines[location] isEqual:@"bomb"]) {
+            [self uncoverSafe:location];
+        }
+    }
 }
 
 // Uncover all the bombs - used when the player loses a game
@@ -342,6 +347,96 @@
             UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
             cellImageView.image = [UIImage imageNamed:image];
         }
+    }
+}
+
+- (void) uncoverSafe:(unsigned long) location {
+    
+    // Set the constraints that we will loop through - this makes sure we don't try to open
+    // cells that do not exist in the collection view (e.g. (-1, 0) or (12,9))
+    int i_min = -1;
+    int i_max = 2;
+    int j_min = -1;
+    int j_max = 2;
+    
+    // If we are on the top row, do not try to go to the previous row
+    if(location%8 == 0)
+        j_min = 0;
+    // If we are on the bottom row, do not try to go to the next row
+    else if(location%8 == 7)
+        j_max = 1;
+    
+    // If we are on the left column, do not try to go to the previous column
+    if(location/8 == 0)
+        i_min = 0;
+    // If we are on the right column, do not try to go to the next column
+    else if(location/8 == 10)
+        i_max = 1;
+    
+    int count = 0;
+    // Iterate through all the surrounding locations to obtain the number of nearby flags
+    for(int i = i_min; i < i_max; i++) {
+        for(int j = j_min; j < j_max; j++) {
+            unsigned long surroundingLocation = location + (i*8) + j;
+            
+            if([self.currentBoard[surroundingLocation] isEqual:@"flagged"]) {
+                count += 1;
+            }
+        }
+    }
+    
+    // Only open safe squares if the the number of surrounding flags is equal to the number on that tile
+    if(count == [[self.mines objectAtIndex:location] integerValue]) {
+        // Iterate through all the surrounding locations
+        for(int i = i_min; i < i_max; i++) {
+            for(int j = j_min; j < j_max; j++) {
+                unsigned long surroundingLocation = location + (i*8) + j;
+                
+                // Check to see that the currently selected surrounding location is closed and not a flag
+                if(![self.currentBoard[surroundingLocation] isEqual:@"flagged"] && [self.currentBoard[surroundingLocation] isEqual:@"closed"]) {
+                    
+                    // Call the open whitespaces function
+                    if([[self.mines objectAtIndex:surroundingLocation] isEqual:@"0"]) {
+                        [self uncoverWhitespace:surroundingLocation];
+                    }
+                    
+                    // Trigger a gameover if a bomb was opened
+                    if([[self.mines objectAtIndex:surroundingLocation] isEqual:@"bomb"]) {
+                        // If the current location contained a bomb, the game has been lost
+                        [self stopTimer];
+                        [self.gameEnded setText:@"You have lost!"];
+                        self.gameEnded.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
+                        self.gameEnded.hidden = NO;
+                        self.gameOver = YES;
+                        [self uncoverBombs];
+                    }
+                    
+                    // If it is, open it and set the image to open_x.png where x is the number of mines around
+                    NSString *image = [NSString stringWithFormat:@"open_%@.png",[self.mines objectAtIndex:surroundingLocation]];
+                    NSUInteger indexArray[] = {surroundingLocation/8, surroundingLocation%8};
+                    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndexes:indexArray length:2];
+                    
+                    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+                    
+                    UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];;
+                    cellImageView.image = [UIImage imageNamed:image];
+                    
+                    // Set the location in the currentBoard array to open
+                    [self.currentBoard replaceObjectAtIndex:surroundingLocation withObject:@"open"];
+                    self.openCount++;
+                }
+            }
+        }
+    }
+    
+    // If the openCount gets to 88 minus the total bombs, then the game has been won
+    if(self.openCount >= 88-[[mines_settings sharedSettings] numberOfBombs]) {
+        [self stopTimer];
+        [self gameWon];
+        [self.gameEnded setText:@"Congratulations! You won!"];
+        self.gameEnded.textColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:1];
+        self.gameEnded.hidden = NO;
+        self.gameOver = YES;
     }
 }
 
@@ -400,7 +495,7 @@
     }
     
     // If the openCount gets to 78, then the game has been won
-    if(self.openCount >= 78) {
+    if(self.openCount >= 88-[[mines_settings sharedSettings] numberOfBombs]) {
         [self stopTimer];
         [self gameWon];
         [self.gameEnded setText:@"Congratulations! You won!"];
@@ -633,15 +728,8 @@
 // If the game has been won, log the current time and save the logList to HighScores.plist
 - (void)gameWon
 {
-    // Get the current timer value
-    self.timeVal = [self getTimerValue];
-    
-    // Show an alert that llows the user to input their name for high score purposes
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations! You won!" message:@"Please enter your name:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    alert.tag = 1;
-    [alert addButtonWithTitle:@"Go"];
-    [alert show];
+    [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:[self getTimerValue], [self getDate], nil]];
+    [self saveChecklistItems];
 }
 
 -(NSString *)getDate
@@ -652,24 +740,6 @@
     [dateFormatter setDateFormat:@"MM/dd/yy, hh:mma"];
     NSString *strMyDate= [dateFormatter stringFromDate:date];
     return strMyDate;
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    // When the alert view is dismissed
-    if (alertView.tag == 1) {
-        if(buttonIndex == 1) {
-            // Get the name
-            UITextField *textfield = [alertView textFieldAtIndex:0];
-            self.name = textfield.text;
-            
-            // Populate the loglist with relevant info
-            [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:self.timeVal, [self getDate], self.name, nil]];
-            
-            // Save the loglist
-            [self saveChecklistItems];
-        }
-    }
 }
 
 @end
