@@ -73,7 +73,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.lastIndexPath = indexPath;
-    [[mines_settings sharedSettings] setDifficulty: indexPath.row];
+    [[mines_settings sharedSettings] setDifficulty: (int)indexPath.row];
     
     [tableView reloadData];
 }
