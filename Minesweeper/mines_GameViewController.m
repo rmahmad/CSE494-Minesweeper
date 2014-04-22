@@ -146,7 +146,7 @@
 
 - (void)updateFlagCount {
     // Set the flagLabel to display the current number of used flags
-    [self.flagLabel setText:[NSString stringWithFormat:@"Flags Used: %d/10",self.flagCount]];
+    [self.flagLabel setText:[NSString stringWithFormat:@"Flags Used: %d/%d",self.flagCount, [[mines_settings sharedSettings] numberOfBombs]]];
 }
 
 // Convert the number of seconds the timer has been running to a minutes:seconds format
@@ -265,7 +265,7 @@
             self.openCount++;
             
             // If 78 spaces have been opened, the game has been won
-            if(self.openCount >= 78) {
+            if(self.openCount >= 88-[[mines_settings sharedSettings] numberOfBombs]) {
                 [self stopTimer];
                 [self gameWon];
                 [self.gameEnded setText:@"Congratulations! You won!"];
@@ -292,7 +292,7 @@
         return;
     
     // Check to see that the location is closed, and the player still has flags to put down
-    if([self.currentBoard[location] isEqual:@"closed"] && self.flagCount < 10) {
+    if([self.currentBoard[location] isEqual:@"closed"] && self.flagCount < [[mines_settings sharedSettings] numberOfBombs]) {
         // Set the image of the current cell to flagged.png
         NSString *image = [NSString stringWithFormat:@"flagged.png"];
         
@@ -427,7 +427,7 @@
     
     // Generate 10 random numbers between 0 and 87 and set those locations in the mines array
     // to "bomb". These are the locations that will contain bombs in the game
-    while (count < 10) {
+    while (count < [[mines_settings sharedSettings] numberOfBombs]) {
         rand = arc4random_uniform(88);
         if ([[self.mines objectAtIndex:rand] isEqual:@"bomb"]) {
         } else {
