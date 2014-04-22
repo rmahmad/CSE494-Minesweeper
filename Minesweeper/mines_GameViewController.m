@@ -207,18 +207,25 @@
 // Save the loglist to HighScores.plist
 - (void)saveChecklistItems
 {
-    NSLog(@"%@",self.logList);
-    [self.parseObject setObject:[NSKeyedArchiver archivedDataWithRootObject:self.logList] forKey:@"highscores"];
-    [self.parseObject save];
+    if(self.parseObject)
+    {
+        [self.parseObject setObject:[NSKeyedArchiver archivedDataWithRootObject:self.logList] forKey:@"highscores"];
+        [self.parseObject save];
+    }
+    else
+    {
+        self.parseObject = [PFObject objectWithClassName:@"highscores"];
+        [self.parseObject setObject:[NSKeyedArchiver archivedDataWithRootObject:self.logList] forKey:@"highscores"];
+        [self.parseObject save];
+    }
 }
 
 - (void)loadChecklistItems
 {
-    // Retrieve the bank account models and store them in accounts
+    // Retrieve the high scores and store them in loglist
     if(self.parseObject)
     {
         self.logList = [NSKeyedUnarchiver unarchiveObjectWithData:[self.parseObject objectForKey:@"highscores"]];
-        [self.parseObject saveInBackground];
     }
 }
 

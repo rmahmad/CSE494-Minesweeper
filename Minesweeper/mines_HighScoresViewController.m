@@ -29,7 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Initialize all the Parse objects here
+    self.parseQuery = [PFQuery queryWithClassName:@"highscores"];
+    self.parseObject = [self.parseQuery getFirstObject];
     
     self.logList = [[NSMutableArray alloc] init];
     [self loadChecklistItems];
@@ -59,31 +61,27 @@
 
 - (void)loadChecklistItems
 {
-    // get our data file path
-    NSString *path = [self dataFilePath];
-    
-    //do we have anything in our documents directory?  If we have anything then load it up
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-        // make an unarchiver, and point it to our data
-        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        // We would like to unarchive the "ChecklistItems" key and get a reference to it
-        self.logList = [unarchiver decodeObjectForKey:@"HighScores"];
-        // we've finished choosing keys that we want, unpack them!
-        [unarchiver finishDecoding];
+    // Retrieve the high scores and store them in loglist
+    if(self.parseObject)
+    {
+        self.logList = [NSKeyedUnarchiver unarchiveObjectWithData:[self.parseObject objectForKey:@"highscores"]];
     }
 }
 
 - (void)saveChecklistItems
 {
-    NSMutableData *data = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    
-    [archiver encodeObject:self.logList forKey:@"HighScores"];
-    
-    //archiver won't do an encode until we tell it "finishEncoding"
-    [archiver finishEncoding];
-    [data writeToFile:[self dataFilePath] atomically:YES];
+    if(self.parseObject)
+    {
+        [self.parseObject setObject:[NSKeyedArchiver archivedDataWithRootObject:self.logList] forKey:@"highscores"];
+        [self.parseObject save];
+    }
+    else
+    {
+        self.parseObject = [PFObject objectWithClassName:@"highscores"];
+        [self.parseObject setObject:[NSKeyedArchiver archivedDataWithRootObject:self.logList] forKey:@"highscores"];
+        [self.parseObject save];
+    }
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface mines_HighScoresViewController : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) PFQuery *parseQuery;
+@property (strong, nonatomic) PFObject *parseObject;
 
 @end
