@@ -110,7 +110,7 @@
         cell.detailTextLabel.text = [[self.logList objectAtIndex:indexPath.row] objectAtIndex:1];
         
         // Use the index number for the image
-        NSString *imageName = [NSString stringWithFormat:@"%ld.jpg", indexPath.row + 1];
+        NSString *imageName = [NSString stringWithFormat:@"%d.jpg", indexPath.row + 1];
         cell.imageView.image = [UIImage imageNamed:imageName];
     }
     
