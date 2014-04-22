@@ -396,6 +396,7 @@
                     // Call the open whitespaces function
                     if([[self.mines objectAtIndex:surroundingLocation] isEqual:@"0"]) {
                         [self uncoverWhitespace:surroundingLocation];
+                        self.openCount--;
                     }
                     
                     // Trigger a gameover if a bomb was opened

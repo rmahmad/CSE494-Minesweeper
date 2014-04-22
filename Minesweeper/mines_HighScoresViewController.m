@@ -106,11 +106,11 @@
     // Only the top 10 highest scores should be shown
     if (indexPath.row < 10) {
         // Set the data for this cell to be from the logList
-        cell.textLabel.text = [[self.logList objectAtIndex:indexPath.row] objectAtIndex:0];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@, %@", [[self.logList objectAtIndex:indexPath.row] objectAtIndex:0], [[self.logList objectAtIndex:indexPath.row] objectAtIndex:2]];
         cell.detailTextLabel.text = [[self.logList objectAtIndex:indexPath.row] objectAtIndex:1];
         
         // Use the index number for the image
-        NSString *imageName = [NSString stringWithFormat:@"%ld.jpg", indexPath.row + 1];
+        NSString *imageName = [NSString stringWithFormat:@"%d.jpg", indexPath.row + 1];
         cell.imageView.image = [UIImage imageNamed:imageName];
     }
     
