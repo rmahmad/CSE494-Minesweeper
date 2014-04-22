@@ -11,6 +11,7 @@
 @interface mines_ViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIButton *playGameButton;
 @property (strong, nonatomic) IBOutlet UIButton *highScoresButton;
+@property (strong, nonatomic) IBOutlet UIButton *settingsButton;
 @property (strong, nonatomic) IBOutlet UIImageView *mineImage;
 
 @end

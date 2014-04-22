@@ -46,6 +46,8 @@
 		E45A955118E11CD700E8A2B7 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954718E11CD700E8A2B7 /* 9.jpg */; };
 		E45A955218E11CD700E8A2B7 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954818E11CD700E8A2B7 /* 10.jpg */; };
 		E48BC1DD18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48BC1DC18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg */; };
+		E4EB193A1905D5ED00375620 /* mines_settings.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EB19391905D5ED00375620 /* mines_settings.m */; };
+		E4F288CB1905A7D400DE9498 /* mines_SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F288CA1905A7D400DE9498 /* mines_SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,10 @@
 		E45A954718E11CD700E8A2B7 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
 		E45A954818E11CD700E8A2B7 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
 		E48BC1DC18E0C4A6009C4E82 /* VTN_Mine_Sweeper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = VTN_Mine_Sweeper.jpg; sourceTree = "<group>"; };
+		E4EB19381905D5ED00375620 /* mines_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mines_settings.h; sourceTree = "<group>"; };
+		E4EB19391905D5ED00375620 /* mines_settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mines_settings.m; sourceTree = "<group>"; };
+		E4F288C91905A7D400DE9498 /* mines_SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mines_SettingsViewController.h; path = ../mines_SettingsViewController.h; sourceTree = "<group>"; };
+		E4F288CA1905A7D400DE9498 /* mines_SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = mines_SettingsViewController.m; path = ../mines_SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,8 +179,12 @@
 				797E188618DBCFBA005FC350 /* mines_HighScoresViewController.m */,
 				797E186218DBCA2B005FC350 /* mines_ViewController.h */,
 				797E186318DBCA2B005FC350 /* mines_ViewController.m */,
+				E4F288C91905A7D400DE9498 /* mines_SettingsViewController.h */,
+				E4F288CA1905A7D400DE9498 /* mines_SettingsViewController.m */,
 				797E186518DBCA2B005FC350 /* Images.xcassets */,
 				797E185418DBCA2B005FC350 /* Supporting Files */,
+				E4EB19381905D5ED00375620 /* mines_settings.h */,
+				E4EB19391905D5ED00375620 /* mines_settings.m */,
 			);
 			path = Minesweeper;
 			sourceTree = "<group>";
@@ -354,8 +364,10 @@
 			files = (
 				797E185A18DBCA2B005FC350 /* main.m in Sources */,
 				797E188418DBCFA5005FC350 /* mines_GameViewController.m in Sources */,
+				E4F288CB1905A7D400DE9498 /* mines_SettingsViewController.m in Sources */,
 				797E188718DBCFBA005FC350 /* mines_HighScoresViewController.m in Sources */,
 				797E186418DBCA2B005FC350 /* mines_ViewController.m in Sources */,
+				E4EB193A1905D5ED00375620 /* mines_settings.m in Sources */,
 				797E185E18DBCA2B005FC350 /* mines_AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
