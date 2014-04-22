@@ -633,8 +633,12 @@
 // If the game has been won, log the current time and save the logList to HighScores.plist
 - (void)gameWon
 {
-    [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:[self getTimerValue], [self getDate], nil]];
-    [self saveChecklistItems];
+    self.timeVal = [self getTimerValue];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations! You won!" message:@"Please enter your name:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alert.tag = 1;
+    [alert addButtonWithTitle:@"Go"];
+    [alert show];
 }
 
 -(NSString *)getDate
@@ -645,6 +649,17 @@
     [dateFormatter setDateFormat:@"MM/dd/yy, hh:mma"];
     NSString *strMyDate= [dateFormatter stringFromDate:date];
     return strMyDate;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1) {
+        UITextField *textfield = [alertView textFieldAtIndex:0];
+        self.name = textfield.text;
+        [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:self.timeVal, [self getDate], self.name, nil]];
+        NSLog(@"%@",[self.logList lastObject]);
+        [self saveChecklistItems];
+    }
 }
 
 @end

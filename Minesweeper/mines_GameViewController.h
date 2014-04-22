@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "mines_settings.h"
 
-@interface mines_GameViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface mines_GameViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *startGameButton;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *flagLabel;
@@ -21,6 +21,8 @@
 @property (strong, nonatomic) NSMutableArray *mines;
 @property (strong, nonatomic) NSMutableArray *currentBoard;
 @property (strong, nonatomic) IBOutlet UILabel *gameEnded;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *timeVal;
 @property int flagCount;
 @property int openCount;
 @property bool gameOver;
