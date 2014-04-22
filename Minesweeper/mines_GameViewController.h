@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 #import "mines_settings.h"
 
 @interface mines_GameViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIAlertViewDelegate>
@@ -23,6 +24,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *gameEnded;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *timeVal;
+@property (strong, nonatomic) PFQuery *parseQuery;
+@property (strong, nonatomic) PFObject *parseObject;
 @property int flagCount;
 @property int openCount;
 @property bool gameOver;

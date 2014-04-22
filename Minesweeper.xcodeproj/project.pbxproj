@@ -35,6 +35,16 @@
 		797E187918DBCA2C005FC350 /* MinesweeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E187818DBCA2C005FC350 /* MinesweeperTests.m */; };
 		797E188418DBCFA5005FC350 /* mines_GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E188318DBCFA5005FC350 /* mines_GameViewController.m */; };
 		797E188718DBCFBA005FC350 /* mines_HighScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 797E188618DBCFBA005FC350 /* mines_HighScoresViewController.m */; };
+		798F889D1906090500A3E72E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798F889C1906090500A3E72E /* Parse.framework */; };
+		798F889F1906093700A3E72E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798F889E1906093700A3E72E /* AudioToolbox.framework */; };
+		798F88A11906093C00A3E72E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798F88A01906093C00A3E72E /* CFNetwork.framework */; };
+		798F88A31906094800A3E72E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798F88A21906094800A3E72E /* CoreLocation.framework */; };
+		798F88A51906094E00A3E72E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 798F88A41906094E00A3E72E /* libz.dylib */; };
+		798F88A71906095300A3E72E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798F88A61906095300A3E72E /* MobileCoreServices.framework */; };
+		798F88A91906095700A3E72E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798F88A81906095700A3E72E /* QuartzCore.framework */; };
+		798F88AB1906095C00A3E72E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798F88AA1906095C00A3E72E /* Security.framework */; };
+		798F88AD1906096000A3E72E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798F88AC1906096000A3E72E /* StoreKit.framework */; };
+		798F88AF1906096600A3E72E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798F88AE1906096600A3E72E /* SystemConfiguration.framework */; };
 		E45A954918E11CD700E8A2B7 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A953F18E11CD700E8A2B7 /* 1.jpg */; };
 		E45A954A18E11CD700E8A2B7 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954018E11CD700E8A2B7 /* 2.jpg */; };
 		E45A954B18E11CD700E8A2B7 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E45A954118E11CD700E8A2B7 /* 3.jpg */; };
@@ -96,6 +106,16 @@
 		797E188318DBCFA5005FC350 /* mines_GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mines_GameViewController.m; sourceTree = "<group>"; };
 		797E188518DBCFBA005FC350 /* mines_HighScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mines_HighScoresViewController.h; sourceTree = "<group>"; };
 		797E188618DBCFBA005FC350 /* mines_HighScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mines_HighScoresViewController.m; sourceTree = "<group>"; };
+		798F889C1906090500A3E72E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		798F889E1906093700A3E72E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		798F88A01906093C00A3E72E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		798F88A21906094800A3E72E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		798F88A41906094E00A3E72E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		798F88A61906095300A3E72E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		798F88A81906095700A3E72E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		798F88AA1906095C00A3E72E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		798F88AC1906096000A3E72E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		798F88AE1906096600A3E72E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E45A953F18E11CD700E8A2B7 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		E45A954018E11CD700E8A2B7 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		E45A954118E11CD700E8A2B7 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
@@ -118,8 +138,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				798F88AF1906096600A3E72E /* SystemConfiguration.framework in Frameworks */,
+				798F88AD1906096000A3E72E /* StoreKit.framework in Frameworks */,
+				798F88AB1906095C00A3E72E /* Security.framework in Frameworks */,
+				798F88A91906095700A3E72E /* QuartzCore.framework in Frameworks */,
+				798F88A71906095300A3E72E /* MobileCoreServices.framework in Frameworks */,
+				798F88A51906094E00A3E72E /* libz.dylib in Frameworks */,
+				798F88A31906094800A3E72E /* CoreLocation.framework in Frameworks */,
 				797E185018DBCA2B005FC350 /* CoreGraphics.framework in Frameworks */,
+				798F88A11906093C00A3E72E /* CFNetwork.framework in Frameworks */,
+				798F889F1906093700A3E72E /* AudioToolbox.framework in Frameworks */,
 				797E185218DBCA2B005FC350 /* UIKit.framework in Frameworks */,
+				798F889D1906090500A3E72E /* Parse.framework in Frameworks */,
 				797E184E18DBCA2B005FC350 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,6 +189,16 @@
 		797E184C18DBCA2B005FC350 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				798F88AE1906096600A3E72E /* SystemConfiguration.framework */,
+				798F88AC1906096000A3E72E /* StoreKit.framework */,
+				798F88AA1906095C00A3E72E /* Security.framework */,
+				798F88A81906095700A3E72E /* QuartzCore.framework */,
+				798F88A61906095300A3E72E /* MobileCoreServices.framework */,
+				798F88A41906094E00A3E72E /* libz.dylib */,
+				798F88A21906094800A3E72E /* CoreLocation.framework */,
+				798F88A01906093C00A3E72E /* CFNetwork.framework */,
+				798F889E1906093700A3E72E /* AudioToolbox.framework */,
+				798F889C1906090500A3E72E /* Parse.framework */,
 				797E184D18DBCA2B005FC350 /* Foundation.framework */,
 				797E184F18DBCA2B005FC350 /* CoreGraphics.framework */,
 				797E185118DBCA2B005FC350 /* UIKit.framework */,
@@ -493,6 +533,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Minesweeper/Minesweeper-Prefix.pch";
 				INFOPLIST_FILE = "Minesweeper/Minesweeper-Info.plist";
@@ -506,6 +550,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Minesweeper/Minesweeper-Prefix.pch";
 				INFOPLIST_FILE = "Minesweeper/Minesweeper-Info.plist";
