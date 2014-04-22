@@ -633,7 +633,10 @@
 // If the game has been won, log the current time and save the logList to HighScores.plist
 - (void)gameWon
 {
+    // Get the current timer value
     self.timeVal = [self getTimerValue];
+    
+    // Show an alert that llows the user to input their name for high score purposes
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations! You won!" message:@"Please enter your name:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     alert.tag = 1;
@@ -653,12 +656,19 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
+    // When the alert view is dismissed
     if (alertView.tag == 1) {
-        UITextField *textfield = [alertView textFieldAtIndex:0];
-        self.name = textfield.text;
-        [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:self.timeVal, [self getDate], self.name, nil]];
-        NSLog(@"%@",[self.logList lastObject]);
-        [self saveChecklistItems];
+        if(buttonIndex == 1) {
+            // Get the name
+            UITextField *textfield = [alertView textFieldAtIndex:0];
+            self.name = textfield.text;
+            
+            // Populate the loglist with relevant info
+            [(NSMutableArray *)self.logList addObject:[[NSArray alloc] initWithObjects:self.timeVal, [self getDate], self.name, nil]];
+            
+            // Save the loglist
+            [self saveChecklistItems];
+        }
     }
 }
 
