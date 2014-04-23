@@ -2,7 +2,7 @@
 //  mines_SettingsViewController.h
 //  Minesweeper
 //
-//  Created by spluta on 4/21/14.
+//  Created by Rizwan Ahmad and Stephen Pluta on 4/21/14.
 //  Copyright (c) 2014 Bay Trailers. All rights reserved.
 //
 

@@ -33,6 +33,7 @@
     self.parseQuery = [PFQuery queryWithClassName:@"highscores"];
     self.parseObject = [self.parseQuery getFirstObject];
     
+    // Load scores from Parse
     self.logList = [[NSMutableArray alloc] init];
     [self loadChecklistItems];
 
@@ -70,11 +71,13 @@
 
 - (void)saveChecklistItems
 {
+    // If the object already exists then save it
     if(self.parseObject)
     {
         [self.parseObject setObject:[NSKeyedArchiver archivedDataWithRootObject:self.logList] forKey:@"highscores"];
         [self.parseObject save];
     }
+    // If the object doesn't exists yet then create it before saving
     else
     {
         self.parseObject = [PFObject objectWithClassName:@"highscores"];

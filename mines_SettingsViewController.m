@@ -2,7 +2,7 @@
 //  mines_SettingsViewController.m
 //  Minesweeper
 //
-//  Created by spluta on 4/21/14.
+//  Created by Rizwan Ahmad and Stephen Pluta on 4/21/14.
 //  Copyright (c) 2014 Bay Trailers. All rights reserved.
 //
 
@@ -27,12 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    /*UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    [tableView reloadData];
-    
-    self.tableView = tableView;*/
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -54,10 +48,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"BasicCell"];
     }
     
+    // Make an array with three different difficulties
     NSArray *options = [NSArray arrayWithObjects:@"Easy", @"Medium", @"Hard", nil];
     
+    // Set the cells to the corresponding difficulties
     cell.textLabel.text = [options objectAtIndex:indexPath.row];
     
+    // Sets the checkmark for the selected cell
     if ([indexPath compare:self.lastIndexPath] == NSOrderedSame)
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -72,6 +69,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Set the difficulty to the cell that was selected
     self.lastIndexPath = indexPath;
     [[mines_settings sharedSettings] setDifficulty: (int)indexPath.row];
     
